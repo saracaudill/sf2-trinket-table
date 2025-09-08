@@ -1,0 +1,101 @@
+body {
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #000;
+}
+
+td {
+  height: 30px;
+  border: 1px solid #000;
+  vertical-align: middle;
+}
+
+td.number {
+  width: 40px;
+  text-align: center;
+  padding-right: 5px;
+  /* font-weight: bold; */
+}
+
+td.text {
+  width: 110px;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+/* .dice-box {
+  display: inline-block;
+  width: 60px;
+  text-align: center;
+  margin: 10px;
+  border: 2px solid #444;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  font-size: 2em;
+}
+
+#dice {
+  margin-bottom: 10px;
+} */
+
+/* Dice container */
+
+#dice {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Dice style */
+.dice-box {
+  /* Basic shape */
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+
+  /* Background gradient for a 3D effect */
+  background: linear-gradient(145deg, #e0e0e0, #a0a0a0);
+  box-shadow:
+    inset 2px 2px 5px #ffffff,
+    inset -2px -2px 5px #707070,
+    4px 4px 10px rgba(0, 0, 0, 0.2);
+
+  /* Center text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Dice number styling */
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+
+  /* Smooth text */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  /* Make text unselectable */
+  user-select: none;
+
+  /* Add a subtle border */
+  border: 2px solid #555;
+}
+
+/* Optional: add some animation when dice changes */
+/* We'll handle this with JS if you'd like! */
