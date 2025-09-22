@@ -3,23 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>2d10 Percentile Table</title>
-  <link rel="stylesheet" href="styles.css" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <title>Starfinder 2e Trinket Table</title>
 </head>
 <body>
+
   <main>
     <section id="dice" aria-labelledby="dice-heading">
-      <h2 id="dice-heading">Dice Roll Result</h2>
+      <!-- <h2 id="dice-heading">Dice Roll Result</h2> -->
       <output class="dice-box" id="tensDie" aria-live="polite" aria-atomic="true">--</output>
       <output class="dice-box" id="onesDie" aria-live="polite" aria-atomic="true">--</output>
     </section>
 
-    <button id="rollButton" type="button">Roll 2d10</button>
+    <button id="rollButton" type="button"><span>Roll 2d10</span></button>
 
-    <table id="myTable" aria-describedby="table-desc">
-      <caption id="table-desc">
+      <h2>
+      Trinket Table
+    </h2>
+
+    <table id="trinket-table" aria-describedby="table-desc">
+      <!-- <caption id="table-desc">
         Mapping of numbers 1-100 to their associated results
-      </caption>
+      </caption> -->
       <thead>
         <tr>
           <th colspan="2" scope="colgroup">1–20</th>
@@ -27,18 +37,6 @@
           <th colspan="2" scope="colgroup">41–60</th>
           <th colspan="2" scope="colgroup">61–80</th>
           <th colspan="2" scope="colgroup">81–100</th>
-        </tr>
-        <tr>
-          <th scope="col">Num</th>
-          <th scope="col">Text</th>
-          <th scope="col">Num</th>
-          <th scope="col">Text</th>
-          <th scope="col">Num</th>
-          <th scope="col">Text</th>
-          <th scope="col">Num</th>
-          <th scope="col">Text</th>
-          <th scope="col">Num</th>
-          <th scope="col">Text</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>

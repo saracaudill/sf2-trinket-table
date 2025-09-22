@@ -1,0 +1,193 @@
+:root {
+  --color-highlight: #fff700;
+  --color-header: #2e4f6a;
+  --color-alt-row: #b8d4e5;
+  --color-black: #221e1e;
+  --color-button: #1aadc6;
+  --color-button-border: #d7cde6;
+
+  --font-header: 'Audiowide', sans-serif;
+  --font-table: 'Exo 2', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  /* background-color: black; */
+  height: 100vh;
+  /* margin: 0; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  color: var(--color-header);
+  font-weight: bolder;
+  font-family: var(--font-table);
+  /* text-transform: uppercase; */
+  letter-spacing: 2px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  border: 0.25rem solid var(--color-alt-row);
+  background-color: var(--color-button);
+  width: 16rem;
+  cursor: pointer;
+  box-shadow: 0 0 12px var(--color-alt-row), inset 0 0 6px var(--color-alt-row);
+  transition: all 0.2s ease;
+  background: linear-gradient(135deg, var(--color-button) 0%, var(--color-alt-row) 100%);
+
+  /* turn rectangle into a rhombus */
+  transform: skew(-20deg);
+}
+
+/* counter-skew the text so it looks normal inside */
+button span {
+  display: inline-block;
+  transform: skew(20deg);
+}
+
+button:hover {
+  color: var(--color-header);
+  border: 0.25rem solid var(--color-button);
+  background-color: var(--color-alt-row);
+
+  transform: skew(-20deg) scale(1.05);
+  box-shadow: 0 0 16px var(--color-button), inset 0 0 8px var(--color-alt-row);
+}
+
+button:active {
+  transform: skew(-20deg) scale(0.95);
+  box-shadow: 0 0 6px var(--color-button) inset;
+  color: var(--color-black);
+  border: 0.25rem solid var(--color-header);
+  background: linear-gradient(135deg, var(--color-button) 0%, var(--color-alt-row) 100%);
+
+
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skew(20deg);
+  transition: 0.5s;
+}
+
+button:hover::after {
+  left: 100%;
+}
+
+#dice {
+  display: flex;
+  justify-content: center; /* centers horizontally */
+  gap: 2.5rem;               /* space between the dice */
+}
+
+.dice-box {
+  display: flex;           /* optional, for centering text inside */
+  justify-content: center;
+  align-items: center;
+  width: 2rem;             /* give them a fixed size */
+  height: 4rem;
+  font-size: 3rem;
+  font-family: var(--font-header);
+  letter-spacing: 0.1em;
+  color: var(--color-button);     /* your accent color */
+  margin: 0 0.5rem;               /* space between tens and ones */
+  text-shadow: 
+    0 0 4px var(--color-button),
+    0 0 8px rgba(255, 255, 255, 0.4);
+  transition: color 0.2s ease;
+}
+
+/* pulse animation */
+@keyframes dicePulse {
+  0%   { transform: scale(1);   opacity: 1; }
+  50%  { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+/* class toggled on roll */
+.dice-box.roll {
+  animation: dicePulse 0.3s ease;
+}
+
+h2 {
+  font-family: var(--font-header);
+  text-transform: uppercase;
+  color: var(--color-header);
+  margin: 4px 0 4px 0;
+}
+
+table {
+  font-family: var(--font-table);
+  font-size: 14px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  color: var(--color-black);
+
+  overflow: hidden; /* ensures rounded corners apply cleanly */
+}
+
+th {
+    font-family: var(--font-table);
+    color: white;
+    letter-spacing: 2px;
+    padding: 8px 0 8px 0;
+    background-color: var(--color-header);
+}
+
+td.number {
+    font-family: var(--font-header);
+    text-align: center;
+    padding: 10px;
+    white-space: nowrap;
+    width: 50px;
+    letter-spacing: 2px;
+}
+
+td.text {
+    min-width: 180px;
+    /* white-space: normal; */
+    word-break: break-word;
+    padding-left: 10px;
+    /* border-right: 1px solid rgba(0, 0, 0, 0.3); */
+}
+
+td.text:not(:last-child) {
+
+    border-right: 1px solid var(--color-black);
+}
+
+tbody tr:nth-child(odd) {
+  background-color: var(--color-alt-row);
+}
+
+tbody tr:nth-child(even) {
+  background-color: white;
+}
+
+/* td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+} */
+
+
+.highlight {
+  background-color: var(--color-highlight);
+  font-weight: bold;
+  /* color: var(--color-bg);
+  font-weight: bold; */
+  /* letter-spacing: .5px; */
+}
