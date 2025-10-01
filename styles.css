@@ -1,101 +1,153 @@
-body {
-  font-family: sans-serif;
-  padding: 20px;
+:root {
+  --color-neon: #04d9ff;
+  --color-highlight: #0437f2;
+  --color-bg: #000080;
+  --color-hyperlink: #fff700;
+
+  --font-header: "Audiowide", cursive;
+  --font-table: "Exo 2", sans-serif;
 }
 
-table {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: lightblue;
+}
+
+/* Table container */
+#trinket-table {
+  font-family: var(--font-table);
+  font-size: 0.85rem; /* slightly compact */
+  width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
 
+/* Default (desktop/wide) */
+#trinket-table th,
+#trinket-table td {
+  padding: 6px 8px;
+  font-size: 0.95rem;
+  border: 1px solid #000;
+}
+
 th {
-  background-color: #f2f2f2;
+  font-family: var(--font-header);
   font-weight: bold;
   text-align: center;
-  padding: 5px;
-  border: 1px solid #000;
 }
 
 td {
-  height: 30px;
-  border: 1px solid #000;
   vertical-align: middle;
 }
 
+/* Numbers column: keep small */
 td.number {
-  width: 40px;
+  width: 50px;
   text-align: center;
-  padding-right: 5px;
-  /* font-weight: bold; */
+  white-space: nowrap;
 }
 
+/* Text column: expand naturally */
 td.text {
-  width: 110px;
-  text-align: left;
-  padding-left: 5px;
+  min-width: 180px; /* ensures breathing room */
+  white-space: normal; /* allow wrapping */
+  word-break: break-word;
 }
 
+/* Highlighted result stays yellow until next roll */
 .highlight {
   background-color: yellow;
 }
 
-/* .dice-box {
-  display: inline-block;
-  width: 60px;
-  text-align: center;
-  margin: 10px;
-  border: 2px solid #444;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: #f0f0f0;
-  font-size: 2em;
-}
-
-#dice {
-  margin-bottom: 10px;
-} */
-
-/* Dice container */
-
-#dice {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* Dice style */
-.dice-box {
-  /* Basic shape */
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-
-  /* Background gradient for a 3D effect */
-  background: linear-gradient(145deg, #e0e0e0, #a0a0a0);
-  box-shadow:
-    inset 2px 2px 5px #ffffff,
-    inset -2px -2px 5px #707070,
-    4px 4px 10px rgba(0, 0, 0, 0.2);
-
-  /* Center text */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /* Dice number styling */
+/* Dice results */
+.dice {
+  font-family: var(--font-header);
   font-size: 2rem;
   font-weight: bold;
-  color: #222;
-
-  /* Smooth text */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-  /* Make text unselectable */
-  user-select: none;
-
-  /* Add a subtle border */
-  border: 2px solid #555;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border: 2px solid #000;
+  border-radius: 6px;
+  margin: 0.5rem;
+  background-color: #fff;
 }
 
-/* Optional: add some animation when dice changes */
-/* We'll handle this with JS if you'd like! */
+/* Roll button styling */
+#rollButton {
+  font-family: var(--font-header);
+  display: block;
+  margin: 0.5rem auto 1rem auto; /* center under dice */
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid #555;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#rollButton:hover {
+  background-color: #ddd;
+}
+
+/* Wide screens: allow text columns to expand */
+@media (min-width: 901px) {
+  #trinket-table {
+    table-layout: auto; /* flexible column sizing */
+  }
+}
+
+/* Medium screens (tablet): shrink fonts */
+@media (max-width: 900px) and (min-width: 601px) {
+  #trinket-table th,
+  #trinket-table td {
+    font-size: 0.85rem;
+  }
+  td.text {
+    min-width: 140px;
+  }
+}
+
+/* Small screens (mobile): stacked "card" view */
+@media (max-width: 600px) {
+  #trinket-table,
+  #trinket-table thead,
+  #trinket-table tbody,
+  #trinket-table th,
+  #trinket-table td,
+  #trinket-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  #trinket-table thead {
+    display: none; /* hide headers on small screens */
+  }
+
+  #trinket-table tr {
+    margin-bottom: 1rem;
+    border: 1px solid #000;
+    border-radius: 6px;
+    padding: 0.5rem;
+  }
+
+  #trinket-table td.number {
+    font-weight: bold;
+    display: inline-block;
+    width: 20%;
+  }
+
+  #trinket-table td.text {
+    display: inline-block;
+    width: 75%;
+  }
+}

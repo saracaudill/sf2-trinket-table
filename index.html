@@ -1,48 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Audiowide&family=Exo+2:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="style.css" />
-  <title>Starfinder 2e Trinket Table</title>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <title>Starfinder 2e Trinket Table</title>
+  </head>
 
-  <main>
-    <section id="dice" aria-labelledby="dice-heading">
-      <!-- <h2 id="dice-heading">Dice Roll Result</h2> -->
-      <output class="dice-box" id="tensDie" aria-live="polite" aria-atomic="true">--</output>
-      <output class="dice-box" id="onesDie" aria-live="polite" aria-atomic="true">--</output>
-    </section>
+  <body>
+    <main>
+      <!--dice rolling section -->
+      <section id="dice-section" aria-labelledby="dice-heading">
+        <header>
+          <h1>Unofficial Starfinder 2e Trinket Table</h1>
 
-    <button id="rollButton" type="button"><span>Roll 2d10</span></button>
+          <!--dice result for sighted users-->
+          <div class="dice-result">
+            <output class="dice" id="tens-die">--</output>
+            <output class="dice" id="ones-die">--</output>
+          </div>
 
-      <h2>
-      Trinket Table
-    </h2>
+          <!--dice result for screen readers-->
+          <output id="dice-total" aria-live="polite" aria-atomic="true"
+            >--</output
+          >
+          <button id="rollButton" type="button"><span>Roll 2d10</span></button>
+        </header>
+      </section>
 
-    <table id="trinket-table" aria-describedby="table-desc">
-      <!-- <caption id="table-desc">
-        Mapping of numbers 1-100 to their associated results
-      </caption> -->
-      <thead>
-        <tr>
-          <th colspan="2" scope="colgroup">1–20</th>
-          <th colspan="2" scope="colgroup">21–40</th>
-          <th colspan="2" scope="colgroup">41–60</th>
-          <th colspan="2" scope="colgroup">61–80</th>
-          <th colspan="2" scope="colgroup">81–100</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody"></tbody>
-    </table>
-  </main>
+      <!-- trinket table section -->
+      <section id="table-section">
+        <h2>Character Trinkets</h2>
 
-  <script type="module" src="js/main.js"></script>
-</body>
+        <table id="trinket-table" aria-describedby="table-desc">
+          <thead>
+            <tr>
+              <th colspan="2">1-20</th>
+              <th colspan="2">21-40</th>
+              <th colspan="2">41-60</th>
+              <th colspan="2">61-80</th>
+              <th colspan="2">81-100</th>
+            </tr>
+            <!-- <tr>
+              <th class="number"></th>
+              <th class="trinket"></th>
+              <th class="number"></th>
+              <th class="trinket"></th>
+              <th class="number"></th>
+              <th class="trinket"></th>
+              <th class="number"></th>
+              <th class="trinket"></th>
+              <th class="number"></th>
+              <th class="trinket"></th>
+            </tr> -->
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </section>
+    </main>
+    <footer>
+      <span> <h3>Community Use Policy</h3></span>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
 </html>

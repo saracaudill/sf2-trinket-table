@@ -1,4 +1,5 @@
 :root {
+  /* Colors */
   --color-highlight: #fff700;
   --color-header: #2e4f6a;
   --color-alt-row: #b8d4e5;
@@ -6,50 +7,145 @@
   --color-button: #1aadc6;
   --color-button-border: #d7cde6;
 
-  --font-header: 'Audiowide', sans-serif;
-  --font-table: 'Exo 2', sans-serif;
+  /* Fonts */
+  --font-header: "Audiowide", sans-serif;
+  --font-table: "Exo 2", sans-serif;
 }
 
+/* Reset box-sizing */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* Body layout */
 body {
-  /* background-color: black; */
-  height: 100vh;
-  /* margin: 0; */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: var(--font-table);
+}
+
+/* Main container - almost full width with tiny side margins */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 98%; /* 🔹 almost full width */
+  margin: 0 auto; /* 🔹 centers container */
+  padding: clamp(0.5rem, 1vw, 1rem);
+}
+
+/* Headings */
+h1,
+h2,
+h3 {
+  font-family: var(--font-header);
+  text-transform: uppercase;
+  color: var(--color-header);
+  margin: 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(0.65rem, 1.5vw, 1.5rem);
+}
+h2 {
+  font-size: clamp(0.45rem, 1.125vw, 1.125rem);
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+h3 {
+  font-size: clamp(0.65rem, 0.85vw, 1rem);
+}
+
+/* Dice section */
+#dice-section header {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.dice-result {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1rem, 5vw, 3rem);
+}
+
+.dice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: clamp(2rem, 5vw, 3rem);
+  height: clamp(3rem, 7vw, 5rem);
+  font-size: clamp(1.25rem, 4.5vw, 2rem);
+  font-family: var(--font-header);
+  letter-spacing: 0.1em;
+  color: var(--color-button);
+  text-shadow: 0 0 4px var(--color-button), 0 0 8px rgba(255, 255, 255, 0.4);
+  transition: color 0.2s ease;
+}
+
+@keyframes dicePulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.dice.roll {
+  animation: dicePulse 0.3s ease;
+}
+
+/* Hidden output for screen readers */
+#dice-total {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Roll button */
 button {
   display: block;
-  margin: 0 auto;
+  margin: clamp(0.125rem, 0.25vw, 0.25rem) auto;
   position: relative;
   overflow: hidden;
   color: var(--color-header);
   font-weight: bolder;
   font-family: var(--font-table);
-  /* text-transform: uppercase; */
   letter-spacing: 2px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
+  padding: clamp(0.25rem, 0.5vw, 0.5rem) clamp(0.5rem, 1vw, 1.25rem);
+  font-size: clamp(0.85rem, 1.35vw, 1.35rem);
   border: 0.25rem solid var(--color-alt-row);
-  background-color: var(--color-button);
-  width: 16rem;
+  background: linear-gradient(
+    135deg,
+    var(--color-button) 0%,
+    var(--color-alt-row) 100%
+  );
+  width: clamp(8rem, 18vw, 14rem);
   cursor: pointer;
   box-shadow: 0 0 12px var(--color-alt-row), inset 0 0 6px var(--color-alt-row);
   transition: all 0.2s ease;
-  background: linear-gradient(135deg, var(--color-button) 0%, var(--color-alt-row) 100%);
-
-  /* turn rectangle into a rhombus */
   transform: skew(-20deg);
 }
 
-/* counter-skew the text so it looks normal inside */
 button span {
   display: inline-block;
   transform: skew(20deg);
@@ -57,29 +153,32 @@ button span {
 
 button:hover {
   color: var(--color-header);
-  border: 0.25rem solid var(--color-button);
-  background-color: var(--color-alt-row);
-
+  border-color: var(--color-button);
   transform: skew(-20deg) scale(1.05);
   box-shadow: 0 0 16px var(--color-button), inset 0 0 8px var(--color-alt-row);
 }
 
-button:active {
+button:active,
+button.is-active {
   transform: skew(-20deg) scale(0.95);
   box-shadow: 0 0 6px var(--color-button) inset;
   color: var(--color-black);
-  border: 0.25rem solid var(--color-header);
-  background: linear-gradient(135deg, var(--color-button) 0%, var(--color-alt-row) 100%);
-
-
+  border-color: var(--color-header);
 }
 
 button::after {
   content: "";
   position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
   transform: skew(20deg);
   transition: 0.5s;
 }
@@ -88,106 +187,87 @@ button:hover::after {
   left: 100%;
 }
 
-#dice {
-  display: flex;
-  justify-content: center; /* centers horizontally */
-  gap: 2.5rem;               /* space between the dice */
+/* Table container - scrolls internally if needed */
+#table-section {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto; /* vertical scroll if table too tall */
+  padding: 0 0 2rem 0; /* 🔹 remove padding for edge-to-edge */
+  max-height: calc(100vh - 14rem); /* adjust for dice/button/header/footer */
+  box-sizing: border-box;
 }
 
-.dice-box {
-  display: flex;           /* optional, for centering text inside */
-  justify-content: center;
-  align-items: center;
-  width: 2rem;             /* give them a fixed size */
-  height: 4rem;
-  font-size: 3rem;
-  font-family: var(--font-header);
-  letter-spacing: 0.1em;
-  color: var(--color-button);     /* your accent color */
-  margin: 0 0.5rem;               /* space between tens and ones */
-  text-shadow: 
-    0 0 4px var(--color-button),
-    0 0 8px rgba(255, 255, 255, 0.4);
-  transition: color 0.2s ease;
-}
-
-/* pulse animation */
-@keyframes dicePulse {
-  0%   { transform: scale(1);   opacity: 1; }
-  50%  { transform: scale(1.2); opacity: 0.8; }
-  100% { transform: scale(1);   opacity: 1; }
-}
-
-/* class toggled on roll */
-.dice-box.roll {
-  animation: dicePulse 0.3s ease;
-}
-
-h2 {
-  font-family: var(--font-header);
-  text-transform: uppercase;
-  color: var(--color-header);
-  margin: 4px 0 4px 0;
-}
-
+/* Table styling */
 table {
   font-family: var(--font-table);
-  font-size: 14px;
-  width: 100%;
-  border-collapse: separate;
+  width: 100%; /* full width of container */
+  /* border-collapse: separate; */
   border-spacing: 0;
   color: var(--color-black);
-
-  overflow: hidden; /* ensures rounded corners apply cleanly */
+  /* table-layout: fixed; */
+  table-layout: auto;
+  border-collapse: collapse;
 }
 
 th {
-    font-family: var(--font-table);
-    color: white;
-    letter-spacing: 2px;
-    padding: 8px 0 8px 0;
-    background-color: var(--color-header);
+  font-family: var(--font-table);
+  color: white;
+  letter-spacing: 2px;
+  padding: clamp(4px, 0.5vw, 8px);
+  background-color: var(--color-header);
 }
 
+td.number,
+td.text {
+  padding: clamp(4px, 0.5vw, 10px);
+  font-size: clamp(0.7rem, 0.9vw, 1.1rem);
+}
+
+th.number,
 td.number {
-    font-family: var(--font-header);
-    text-align: center;
-    padding: 10px;
-    white-space: nowrap;
-    width: 50px;
-    letter-spacing: 2px;
+  font-family: var(--font-header);
+  text-align: center;
+  width: clamp(1.5rem, 2vw, 2rem); /* 🔹 about 24–32px wide */
+  padding: 0 2px; /* 🔹 almost no side padding */
+  letter-spacing: 0; /* 🔹 no extra spacing */
+  white-space: nowrap;
 }
 
 td.text {
-    min-width: 180px;
-    /* white-space: normal; */
-    word-break: break-word;
-    padding-left: 10px;
-    /* border-right: 1px solid rgba(0, 0, 0, 0.3); */
+  word-break: break-word;
+  min-width: clamp(
+    120px,
+    15%,
+    180px
+  ); /* slightly narrower min-width to fit more on wide screens */
+  padding-left: clamp(5px, 0.5vw, 10px);
 }
 
 td.text:not(:last-child) {
-
-    border-right: 1px solid var(--color-black);
+  border-right: 1px solid var(--color-black);
 }
 
 tbody tr:nth-child(odd) {
   background-color: var(--color-alt-row);
 }
-
 tbody tr:nth-child(even) {
   background-color: white;
 }
 
-/* td {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-} */
-
-
 .highlight {
   background-color: var(--color-highlight);
   font-weight: bold;
-  /* color: var(--color-bg);
-  font-weight: bold; */
-  /* letter-spacing: .5px; */
+}
+
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: clamp(0.25rem, 1vw, 0.5rem);
+  font-size: clamp(0.7rem, 0.8vw, 1rem);
+  background: white;
+  z-index: 1000;
 }

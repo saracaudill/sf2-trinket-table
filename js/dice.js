@@ -1,18 +1,21 @@
 // dice.js
-import { highlightCell } from './table.js';
+// handles dice logic and animation
+
+import { highlightCell } from "./table.js";
 
 // 🔹 helper: add pulse animation to dice when result lands
 function pulseDice(tensEl, onesEl) {
-  [tensEl, onesEl].forEach(die => {
+  [tensEl, onesEl].forEach((die) => {
     die.classList.remove("roll"); // reset if already rolling
-    void die.offsetWidth;         // force reflow so animation restarts
+    void die.offsetWidth; // force reflow so animation restarts
     die.classList.add("roll");
   });
 }
 
 export function rollDice() {
-  const tensDisplay = document.getElementById("tensDie");
-  const onesDisplay = document.getElementById("onesDie");
+  const tensDisplay = document.getElementById("tens-die");
+  const onesDisplay = document.getElementById("ones-die");
+  const totalOutput = document.getElementById("dice-total");
 
   let rollCount = 0;
   let delay = 20; // start ultra fast
@@ -46,6 +49,9 @@ export function rollDice() {
       if (finalTens === 0 && finalOnes === 0) {
         total = 100; // special case for percentile "00"
       }
+
+      // update hidden output for screen readers
+      totalOutput.textContent = total;
 
       // ⏱️ tiny pause before highlighting
       setTimeout(() => {

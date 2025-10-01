@@ -1,4 +1,5 @@
 // table.js
+// handles table responsiveness
 
 export function buildTable(texts) {
   const tableBody = document.getElementById("tableBody");
@@ -28,7 +29,7 @@ export function buildTable(texts) {
 
 export function highlightCell(number) {
   // Clear previous highlights
-  document.querySelectorAll("td").forEach(td => {
+  document.querySelectorAll("td").forEach((td) => {
     td.classList.remove("highlight");
   });
 
@@ -42,7 +43,7 @@ export function highlightCell(number) {
     const numberCellIndex = group * 2;
     const textCellIndex = numberCellIndex + 1;
 
-    [tr.cells[numberCellIndex], tr.cells[textCellIndex]].forEach(cell => {
+    [tr.cells[numberCellIndex], tr.cells[textCellIndex]].forEach((cell) => {
       if (cell) {
         // Restart the flash animation
         cell.classList.remove("highlight");
