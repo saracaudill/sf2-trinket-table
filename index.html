@@ -17,28 +17,45 @@
 
   <body>
     <main>
-      <!--dice rolling section -->
+      <!-- 1. dice rolling section: header, results, and button -->
+
       <section id="dice-section" aria-labelledby="dice-heading">
         <header>
           <h1>Unofficial Starfinder 2e Trinket Table</h1>
 
-          <!--dice result for sighted users-->
+          <!-- 1a. dice result for sighted users-->
+
           <div class="dice-result">
             <output class="dice" id="tens-die">--</output>
             <output class="dice" id="ones-die">--</output>
           </div>
 
-          <!--dice result for screen readers-->
+          <!-- 1b. dice result for screen readers-->
+
           <output id="dice-total" aria-live="polite" aria-atomic="true"
             >--</output
           >
+
+          <!-- 1c. roll button -->
+
           <button id="rollButton" type="button"><span>Roll 2d10</span></button>
         </header>
       </section>
 
-      <!-- trinket table section -->
+      <!-- 2. trinket table section -->
+
       <section id="table-section">
-        <h2>Character Trinkets</h2>
+        <div class="section-header">
+          <h2>Character Trinkets</h2>
+
+          <!-- 2a. paizo community use policy trigger link -->
+
+          <a id="cup-link" href="#" data-modal-target="cup-modal">
+            Community Use Policy
+          </a>
+        </div>
+
+        <!-- 2b. trinket table -->
 
         <table id="trinket-table" aria-describedby="table-desc">
           <thead>
@@ -49,27 +66,58 @@
               <th colspan="2">61-80</th>
               <th colspan="2">81-100</th>
             </tr>
-            <!-- <tr>
-              <th class="number"></th>
-              <th class="trinket"></th>
-              <th class="number"></th>
-              <th class="trinket"></th>
-              <th class="number"></th>
-              <th class="trinket"></th>
-              <th class="number"></th>
-              <th class="trinket"></th>
-              <th class="number"></th>
-              <th class="trinket"></th>
-            </tr> -->
           </thead>
           <tbody id="tableBody"></tbody>
         </table>
       </section>
     </main>
-    <footer>
-      <span> <h3>Community Use Policy</h3></span>
-    </footer>
+
+    <!-- 3. paizo community use policy modal -->
+
+    <div
+      id="cup-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cup-modal-title"
+      aria-hidden="true"
+    >
+      <div class="modal-content">
+        <h3 id="cup-modal-title">Community Use Policy</h3>
+
+        <!-- 3a. modal close button -->
+
+        <button
+          class="modal-close"
+          id="close-cup-modal"
+          aria-label="Close modal"
+        >
+          &times;
+        </button>
+
+        <!-- 3b. cup text -->
+
+        <p>
+          This web tool uses trademarks and/or copyrights owned by Paizo Inc.,
+          used under Paizo's
+          <a
+            href="https://paizo.com/communityuse"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Community Use Policy</a
+          >. We are expressly prohibited from charging you to use or access this
+          content. This web tool is not published, endorsed, or specifically
+          approved by Paizo. For more information about Paizo Inc. and Paizo
+          products, visit
+          <a href="https://paizo.com" target="_blank" rel="noopener noreferrer"
+            >paizo.com</a
+          >.
+        </p>
+      </div>
+    </div>
 
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/modal.js"></script>
   </body>
 </html>
