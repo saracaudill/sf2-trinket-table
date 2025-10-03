@@ -28,7 +28,8 @@ export function buildTable(texts) {
 }
 
 export function highlightCell(number) {
-  // Clear previous highlights
+  // clear previous highlights
+
   document.querySelectorAll("td").forEach((td) => {
     td.classList.remove("highlight");
   });
@@ -45,9 +46,13 @@ export function highlightCell(number) {
 
     [tr.cells[numberCellIndex], tr.cells[textCellIndex]].forEach((cell) => {
       if (cell) {
-        // Restart the flash animation
+        // restart flash animation
+
         cell.classList.remove("highlight");
-        void cell.offsetWidth; // force reflow so animation can restart
+        void cell.offsetWidth;
+
+        // force reflow, so animation can restart
+
         cell.classList.add("highlight");
       }
     });
