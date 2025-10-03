@@ -1,5 +1,5 @@
 :root {
-  /* Colors */
+  /* colors */
   --color-highlight: #fff700;
   --color-header: #2e4f6a;
   --color-alt-row: #b8d4e5;
@@ -7,19 +7,19 @@
   --color-button: #1aadc6;
   --color-button-border: #d7cde6;
 
-  /* Fonts */
+  /* fonts */
   --font-header: "Audiowide", sans-serif;
   --font-table: "Exo 2", sans-serif;
 }
 
-/* Reset box-sizing */
+/* reset box-sizing */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Body layout */
+/* body layout */
 body {
   margin: 0;
   display: flex;
@@ -28,17 +28,17 @@ body {
   font-family: var(--font-table);
 }
 
-/* Main container - almost full width with tiny side margins */
+/* main container */
 main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  width: 98%; /* 🔹 almost full width */
-  margin: 0 auto; /* 🔹 centers container */
-  padding: clamp(0.5rem, 1vw, 1rem);
+  width: 98%; /* almost full width */
+  margin: 0 auto;
+  padding: clamp(0.5rem, 1vw, 1rem) clamp(0.5rem, 1vw, 1rem) 0;
 }
 
-/* Headings */
+/* headings */
 h1,
 h2,
 h3 {
@@ -46,22 +46,22 @@ h3 {
   text-transform: uppercase;
   color: var(--color-header);
   margin: 0;
-  text-align: center;
 }
 
 h1 {
+  text-align: center;
   font-size: clamp(0.65rem, 1.5vw, 1.5rem);
 }
 h2 {
   font-size: clamp(0.45rem, 1.125vw, 1.125rem);
-  text-align: left;
-  margin-bottom: 0.5rem;
 }
 h3 {
+  text-align: center;
   font-size: clamp(0.65rem, 0.85vw, 1rem);
 }
 
-/* Dice section */
+/* dice section */
+
 #dice-section header {
   display: flex;
   flex-direction: column;
@@ -81,7 +81,7 @@ h3 {
   justify-content: center;
   align-items: center;
   width: clamp(2rem, 5vw, 3rem);
-  height: clamp(3rem, 7vw, 5rem);
+  height: clamp(2rem, 5vw, 3rem);
   font-size: clamp(1.25rem, 4.5vw, 2rem);
   font-family: var(--font-header);
   letter-spacing: 0.1em;
@@ -109,7 +109,8 @@ h3 {
   animation: dicePulse 0.3s ease;
 }
 
-/* Hidden output for screen readers */
+/* hidden output for screen readers */
+
 #dice-total {
   position: absolute;
   width: 1px;
@@ -121,8 +122,9 @@ h3 {
   border: 0;
 }
 
-/* Roll button */
-button {
+/* roll button */
+
+#rollButton {
   display: block;
   margin: clamp(0.125rem, 0.25vw, 0.25rem) auto;
   position: relative;
@@ -146,27 +148,27 @@ button {
   transform: skew(-20deg);
 }
 
-button span {
+#rollButton span {
   display: inline-block;
   transform: skew(20deg);
 }
 
-button:hover {
+#rollButton:hover {
   color: var(--color-header);
   border-color: var(--color-button);
   transform: skew(-20deg) scale(1.05);
   box-shadow: 0 0 16px var(--color-button), inset 0 0 8px var(--color-alt-row);
 }
 
-button:active,
-button.is-active {
+#rollButton:active,
+#rollButton.is-active {
   transform: skew(-20deg) scale(0.95);
   box-shadow: 0 0 6px var(--color-button) inset;
   color: var(--color-black);
   border-color: var(--color-header);
 }
 
-button::after {
+#rollButton::after {
   content: "";
   position: absolute;
   top: 0;
@@ -183,28 +185,26 @@ button::after {
   transition: 0.5s;
 }
 
-button:hover::after {
+#rollButton:hover::after {
   left: 100%;
 }
 
-/* Table container - scrolls internally if needed */
+/* Table container */
 #table-section {
   flex: 1;
+  /* min-height: */
   width: 100%;
-  overflow-y: auto; /* vertical scroll if table too tall */
-  padding: 0 0 2rem 0; /* 🔹 remove padding for edge-to-edge */
-  max-height: calc(100vh - 14rem); /* adjust for dice/button/header/footer */
+  overflow-y: auto;
+  padding: 0;
   box-sizing: border-box;
 }
 
 /* Table styling */
 table {
   font-family: var(--font-table);
-  width: 100%; /* full width of container */
-  /* border-collapse: separate; */
+  width: 100%;
   border-spacing: 0;
   color: var(--color-black);
-  /* table-layout: fixed; */
   table-layout: auto;
   border-collapse: collapse;
 }
@@ -227,19 +227,15 @@ th.number,
 td.number {
   font-family: var(--font-header);
   text-align: center;
-  width: clamp(1.5rem, 2vw, 2rem); /* 🔹 about 24–32px wide */
-  padding: 0 2px; /* 🔹 almost no side padding */
-  letter-spacing: 0; /* 🔹 no extra spacing */
+  width: clamp(1.5rem, 2vw, 2rem); /* narrow */
+  padding: 0 2px;
+  letter-spacing: 0;
   white-space: nowrap;
 }
 
 td.text {
   word-break: break-word;
-  min-width: clamp(
-    120px,
-    15%,
-    180px
-  ); /* slightly narrower min-width to fit more on wide screens */
+  min-width: clamp(120px, 15%, 180px);
   padding-left: clamp(5px, 0.5vw, 10px);
 }
 
@@ -259,15 +255,102 @@ tbody tr:nth-child(even) {
   font-weight: bold;
 }
 
-/* Footer */
-footer {
+/* -------------------------
+   SECTION HEADER (H2 + CUP LINK)
+-------------------------- */
+
+.section-header {
+  display: flex;
+  justify-content: space-between; /* h2 left, link right */
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-family: var(--font-header);
+  font-size: clamp(0.45rem, 1.125vw, 1.125rem);
+  text-transform: uppercase;
+  color: var(--color-header);
+}
+
+#cup-link {
+  font-size: clamp(0.7rem, 1vw, 0.9rem);
+  color: var(--color-header, #333);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#cup-link:hover,
+#cup-link:focus {
+  color: var(--color-accent, #0077cc);
+}
+
+/* -------------------------
+   MODAL OVERLAY + CONTENT
+-------------------------- */
+
+.modal {
+  display: none;
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: clamp(0.25rem, 1vw, 0.5rem);
-  font-size: clamp(0.7rem, 0.8vw, 1rem);
-  background: white;
   z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background: #fff;
+  margin: 10% auto;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  width: clamp(300px, 60%, 700px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+  color: var(--color-header, #333);
+}
+
+.modal-content p {
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  line-height: 1.4;
+  margin: 0.5rem 0;
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: none;
+  background: none;
+  padding: 0;
+  color: #333;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease, transform 0.15s ease;
+  outline: none;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: var(--color-button);
+}
+
+.modal-close:active {
+  transform: scale(0.9);
+  color: var(--color-header);
 }
